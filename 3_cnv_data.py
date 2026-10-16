@@ -6,25 +6,22 @@ b) save plot to file
 c)
 """
 
+import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 from plotnine import ggplot, geom_point, ggtitle
 
+
 # Variables:
-input_data = 'CNV_log2_skin_melanoma.csv' 
-plot_title = 'CNV skin melanoma'
-x_axis = 'cell_count_pmn_ml'
-x_label = 'Cell count (PMN/ml)'
-y_axis = 'purity_percent'
-y_label = 'Purity (%)'
+dataset = pd.read_csv('cnv_data.csv')
+plot_title = 'CNV'
+x_axis = 'position_mb'
+x_label = 'Position mb'
+y_axis = 'log2_ratio'
+y_label = 'log2 ratio'
+print(dataset)
 
-# Load the ‘penguins’ dataset using seaborn. Remove any rows with missing values. Hint: Check out how to use the dropna() function.
-dataset = sns.load_dataset(input_data)
-
-
-# Plot a scatterplot using matplotlib. The plot should show flipper length on the x-axis and body mass on the y-axis. Add an informative title, xlabel and ylabel. Save the plot.
-plt.scatter(dataset[x_axis],[y_axis]) 
-plt.title(plot_title)
-plt.xlabel(x_label)
-plt.ylabel(y_label)
+plotly_fig = px.scatter(dataset, x=x_axis, y=y_axis, title=plot_title)
+plotly_fig.write_image(f'{plot_title}.png')  #apparently need kaleido for this but it is what it is. and chrome. Prb should have chosen smth else
