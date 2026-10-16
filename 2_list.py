@@ -19,3 +19,6 @@ def clean_list(my_list):    # define func clean_list
     return new_list     # passes new_list to output
 
 print(clean_list(my_list))  #prints the function output of my_list 
+
+
+new_list_b = [2, 4, 6, 3]
